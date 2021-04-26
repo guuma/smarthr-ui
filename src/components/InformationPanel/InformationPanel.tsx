@@ -116,11 +116,9 @@ export const InformationPanel: VFC<Props> = ({
 }
 
 const Wrapper = styled(Base)<{ themes: Theme; role: string }>`
-  ${({ themes }) => {
-    const { pxToRem, space } = themes.size
-
+  ${({ themes: { spacingByChar } }) => {
     return css`
-      padding: ${pxToRem(space.S)};
+      padding: ${spacingByChar(1.5)};
       box-shadow: rgba(51, 51, 51, 0.3) 0 4px 10px 0;
     `
   }}
@@ -134,11 +132,9 @@ const Header = styled.div<{ themes: Theme }>`
 
 const Title = styled.div<{ themes: Theme }>`
   vertical-align: middle;
-  ${({ themes }) => {
-    const { pxToRem, space } = themes.size
-
+  ${({ themes: { spacingByChar } }) => {
     return css`
-      margin-right: ${pxToRem(space.XXS)};
+      margin-right: ${spacingByChar(0.5)};
     `
   }}
 `
@@ -146,11 +142,9 @@ const Title = styled.div<{ themes: Theme }>`
 const createTitleIcon = (Icon: typeof FaCheckCircleIcon) => {
   return styled(Icon)<{ $theme: Theme }>`
     vertical-align: text-top;
-    ${({ $theme }) => {
-      const { pxToRem, space } = $theme.size
-
+    ${({ $theme: { spacingByChar } }) => {
       return css`
-        margin-right: ${pxToRem(space.XXS)};
+        margin-right: ${spacingByChar(0.5)};
       `
     }}
   `
@@ -162,11 +156,11 @@ const ErrorTitleIcon = createTitleIcon(FaExclamationCircleIcon)
 const SyncIcon = createTitleIcon(FaSyncAltIcon)
 
 const Content = styled.div<{ themes: Theme }>`
-  ${({ themes }) => {
-    const { pxToRem, space, font } = themes.size
+  ${({ themes: { size, spacingByChar } }) => {
+    const { pxToRem, font } = size
 
     return css`
-      margin-top: ${pxToRem(space.S)};
+      margin-top: ${spacingByChar(1.5)};
       font-size: ${pxToRem(font.TALL)};
       &[aria-hidden='true'] {
         display: none;
